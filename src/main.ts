@@ -13,7 +13,7 @@ new TypeIt(".animated", {
   .delete()
   .type("Back-end", { delay: 1000, startDelay: 500 })
   .delete()
-  .type("Full Stack", { delay: 1000 })
+  .type("Fullstack", { delay: 1000 })
   .delete()
   .type("Game", { delay: 1000 })
   .delete()
