@@ -40,6 +40,19 @@
   padding: 0 0.5rem;
 }
 
+.content-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+
+.content-nav-links {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  row-gap: 6rem;
+}
+
 .content-about {
   text-align: justify;
   line-height: 1.5;
