@@ -1,53 +1,850 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Rodrigo Lira - Portfolio</title>
-    <!-- FONTS -->
+    <meta
+      name="description"
+      content="Rodrigo Lira - portfólio minimalista e sofisticado com projetos, skills e contato para contratação."
+    />
+    <title>Rodrigo Lira | Portfólio</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              surface: "#0a0a0a",
+              panel: "#111111",
+              line: "rgba(255,255,255,0.10)",
+              accent: "#34d399",
+              accentSoft: "rgba(52, 211, 153, 0.12)",
+            },
+            boxShadow: {
+              soft: "0 20px 80px rgba(0, 0, 0, 0.35)",
+            },
+            backgroundImage: {
+              grain:
+                "radial-gradient(circle at top, rgba(52,211,153,0.12), transparent 30%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.06), transparent 22%)",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+
+      html {
+        font-family: "Inter", sans-serif;
+      }
+
+      body {
+        background:
+          radial-gradient(circle at top left, rgba(52, 211, 153, 0.08), transparent 30%),
+          linear-gradient(180deg, #090909 0%, #0a0a0a 50%, #050505 100%);
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateY(32px);
+        transition:
+          opacity 700ms ease,
+          transform 700ms ease;
+      }
+
+      .fade-up.is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .focus-ring {
+        outline: none;
+      }
+
+      .focus-ring:focus-visible {
+        box-shadow:
+          0 0 0 3px rgba(10, 10, 10, 1),
+          0 0 0 5px rgba(52, 211, 153, 0.9);
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+          scroll-behavior: auto !important;
+        }
+
+        .fade-up {
+          opacity: 1;
+          transform: none;
+        }
+      }
+    </style>
   </head>
-  <body>
-    <main class="container">
-      <section class="header">
-        <h1 class="header-title">RODRIGO LIRA</h1>
-        <span class="header-subtitle">&lt;/&gt; </span>
-        <span class="header-subtitle animated"></span>
-        <span class="header-subtitle"> Developer</span>
-      </section>
 
-      <section class="content">
-        <nav class="content-nav">
-          <p class="content-about">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dicta sint eaque iure
-            laboriosam dignissimos optio ullam, facilis amet, minus autem molestias blanditiis
-            recusandae veniam, nisi illum totam voluptatum! Dolorum, exercitationem.
-          </p>
+  <body
+    class="min-h-screen bg-surface font-sans text-zinc-100 antialiased selection:bg-emerald-300 selection:text-zinc-950"
+  >
+    <header
+      class="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-zinc-950/55 backdrop-blur-xl"
+      aria-label="Cabeçalho principal"
+    >
+      <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-8">
+        <a
+          href="#inicio"
+          class="focus-ring inline-flex items-center gap-3 rounded-full text-sm font-semibold tracking-[0.24em] text-white transition hover:text-emerald-300"
+          aria-label="Ir para o topo do portfólio"
+        >
+          <span class="inline-flex h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+          [Rodrigo Lira]
+        </a>
 
-          <ul class="content-nav-links">
-            <li class="content-na-links_item">Web Apps</li>
-            <li class="content-na-links_item">Mobile Apps</li>
-            <li class="content-na-links_item">Browser Games</li>
-            <li class="content-na-links_item">Pixel Art</li>
+        <button
+          id="mobile-menu-button"
+          type="button"
+          class="focus-ring inline-flex items-center justify-center rounded-full border border-white/10 p-3 text-white transition hover:border-white/20 hover:bg-white/5 md:hidden"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          aria-label="Abrir menu de navegação"
+        >
+          <svg
+            aria-hidden="true"
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path stroke-linecap="round" d="M4 7h16M4 12h16M4 17h16" />
+          </svg>
+        </button>
+
+        <nav class="hidden md:block" aria-label="Navegação principal">
+          <ul class="flex items-center gap-2 text-sm text-zinc-300">
+            <li>
+              <a
+                href="#sobre"
+                class="focus-ring rounded-full px-4 py-2 transition hover:bg-white/5 hover:text-white"
+                >Sobre</a
+              >
+            </li>
+            <li>
+              <a
+                href="#projetos"
+                class="focus-ring rounded-full px-4 py-2 transition hover:bg-white/5 hover:text-white"
+                >Projetos</a
+              >
+            </li>
+            <li>
+              <a
+                href="#contato"
+                class="focus-ring rounded-full px-4 py-2 transition hover:bg-white/5 hover:text-white"
+                >Contato</a
+              >
+            </li>
           </ul>
         </nav>
+      </div>
+
+      <nav
+        id="mobile-menu"
+        class="mx-6 mb-4 hidden rounded-3xl border border-white/10 bg-zinc-900/95 p-3 shadow-soft md:hidden"
+        aria-label="Navegação mobile"
+      >
+        <ul class="space-y-1 text-sm text-zinc-200">
+          <li>
+            <a
+              href="#sobre"
+              class="focus-ring block rounded-2xl px-4 py-3 transition hover:bg-white/5"
+              >Sobre</a
+            >
+          </li>
+          <li>
+            <a
+              href="#projetos"
+              class="focus-ring block rounded-2xl px-4 py-3 transition hover:bg-white/5"
+              >Projetos</a
+            >
+          </li>
+          <li>
+            <a
+              href="#contato"
+              class="focus-ring block rounded-2xl px-4 py-3 transition hover:bg-white/5"
+              >Contato</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="conteudo">
+      <section
+        id="inicio"
+        class="relative isolate flex min-h-screen items-center overflow-hidden px-6 pb-20 pt-28 lg:px-8"
+        aria-labelledby="hero-title"
+      >
+        <div class="absolute inset-0 -z-10 bg-grain opacity-90"></div>
+        <div
+          class="absolute inset-x-0 top-24 -z-10 mx-auto h-80 max-w-3xl rounded-full bg-emerald-400/10 blur-3xl"
+        ></div>
+
+        <div
+          class="mx-auto grid w-full max-w-7xl gap-16 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-end"
+        >
+          <div class="max-w-4xl">
+            <p
+              class="fade-up mb-6 inline-flex items-center gap-3 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-4 py-2 text-sm font-medium text-emerald-300"
+            >
+              <span class="inline-block h-2 w-2 rounded-full bg-emerald-400"></span>
+              Disponível para novos projetos e colaborações
+            </p>
+
+            <h1
+              id="hero-title"
+              class="fade-up text-5xl font-extrabold tracking-tight text-white sm:text-6xl lg:text-8xl"
+            >
+              &lt;Rodrigo Lira &#47;&gt;
+            </h1>
+
+            <p
+              class="fade-up mt-6 max-w-2xl text-xl font-medium leading-relaxed text-zinc-200 sm:text-2xl"
+            >
+              [<span class="animated">Desenvolvedor(a) Full Stack</span>] criando experiências
+              digitais elegantes, rápidas e acessíveis.
+            </p>
+
+            <p class="fade-up mt-8 max-w-2xl text-base leading-8 text-zinc-400 sm:text-lg">
+              [Uma frase de impacto sobre sua forma de pensar produto, código e design. Exemplo:
+              Transformo ideias complexas em interfaces simples, memoráveis e consistentes.]
+            </p>
+
+            <div class="fade-up mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#projetos"
+                class="focus-ring inline-flex items-center justify-center rounded-full bg-emerald-400 px-6 py-3.5 text-sm font-semibold text-zinc-950 transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-300"
+              >
+                Ver Projetos
+              </a>
+              <a
+                href="#contato"
+                class="focus-ring inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-6 py-3.5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/10"
+              >
+                Contato
+              </a>
+            </div>
+          </div>
+
+          <aside
+            class="fade-up rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-soft backdrop-blur"
+          >
+            <p class="text-xs font-semibold uppercase tracking-[0.24em] text-zinc-500">Resumo</p>
+            <dl class="mt-8 space-y-6">
+              <div>
+                <dt class="text-sm text-zinc-500">Foco atual</dt>
+                <dd class="mt-2 text-lg font-semibold text-white">
+                  [Front-end premium + performance]
+                </dd>
+              </div>
+              <div>
+                <dt class="text-sm text-zinc-500">Base</dt>
+                <dd class="mt-2 text-lg font-semibold text-white">[Sua cidade, país]</dd>
+              </div>
+              <div>
+                <dt class="text-sm text-zinc-500">Contato rápido</dt>
+                <dd class="mt-2 text-lg font-semibold text-white">[seuemail@exemplo.com]</dd>
+              </div>
+            </dl>
+          </aside>
+        </div>
       </section>
 
-      <footer class="footer">
-        <ul class="footer-nav">
-          <li>Github</li>
-          <li>X</li>
-          <li>LinkedIn</li>
-        </ul>
-      </footer>
+      <section id="sobre" class="px-6 py-24 lg:px-8" aria-labelledby="sobre-title">
+        <div class="mx-auto max-w-7xl">
+          <div class="fade-up max-w-3xl">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">Sobre</p>
+            <h2
+              id="sobre-title"
+              class="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl"
+            >
+              Minimalismo com profundidade técnica.
+            </h2>
+            <p class="mt-6 text-lg leading-8 text-zinc-400">
+              [Sua bio curta. Exemplo: Sou um(a) desenvolvedor(a) que combina visão de produto,
+              rigor técnico e atenção obsessiva aos detalhes para criar experiências digitais
+              sofisticadas, acessíveis e prontas para escala.]
+            </p>
+          </div>
+
+          <div class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <article
+              class="fade-up rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-soft"
+            >
+              <div
+                class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6 fill-none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8 7V5.75A1.75 1.75 0 0 1 9.75 4h4.5A1.75 1.75 0 0 1 16 5.75V7m-9 0h10A2 2 0 0 1 19 9v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2Z"
+                  />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-semibold text-white">HTML Semântico</h3>
+              <p class="mt-3 text-sm leading-7 text-zinc-400">
+                Estruturas claras, legíveis e orientadas à acessibilidade desde a base.
+              </p>
+            </article>
+
+            <article
+              class="fade-up rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-soft"
+            >
+              <div
+                class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6 fill-none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4 6.75A2.75 2.75 0 0 1 6.75 4h10.5A2.75 2.75 0 0 1 20 6.75v10.5A2.75 2.75 0 0 1 17.25 20H6.75A2.75 2.75 0 0 1 4 17.25V6.75Z"
+                  />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 9h8M8 12h8M8 15h5" />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-semibold text-white">Tailwind CSS</h3>
+              <p class="mt-3 text-sm leading-7 text-zinc-400">
+                Interfaces consistentes, refinadas e responsivas com foco em ritmo visual.
+              </p>
+            </article>
+
+            <article
+              class="fade-up rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-soft"
+            >
+              <div
+                class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6 fill-none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m8 8 4-4 4 4M8 16l4 4 4-4M4 12h16"
+                  />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-semibold text-white">JavaScript Moderno</h3>
+              <p class="mt-3 text-sm leading-7 text-zinc-400">
+                Interações fluidas, componentes leves e integração com APIs públicas.
+              </p>
+            </article>
+
+            <article
+              class="fade-up rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-soft"
+            >
+              <div
+                class="flex h-12 w-12 items-center justify-center rounded-2xl bg-emerald-400/10 text-emerald-300"
+              >
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  class="h-6 w-6 fill-none"
+                  stroke="currentColor"
+                  stroke-width="1.75"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M12 6v6l4 2m5-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                  />
+                </svg>
+              </div>
+              <h3 class="mt-6 text-lg font-semibold text-white">UX & Performance</h3>
+              <p class="mt-3 text-sm leading-7 text-zinc-400">
+                Experiências rápidas, confortáveis no teclado e com contraste de leitura exemplar.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="projetos" class="px-6 py-24 lg:px-8" aria-labelledby="projetos-title">
+        <div class="mx-auto max-w-7xl">
+          <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+            <div class="fade-up max-w-3xl">
+              <p class="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">
+                Projetos
+              </p>
+              <h2
+                id="projetos-title"
+                class="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl"
+              >
+                Seleção recente do GitHub com fallback elegante.
+              </h2>
+              <p class="mt-6 text-lg leading-8 text-zinc-400">
+                Os cards abaixo tentam carregar automaticamente os repositórios mais recentes da API
+                pública do GitHub. Se algo falhar, o portfólio continua bonito com placeholders
+                fáceis de editar.
+              </p>
+            </div>
+
+            <p id="project-status" class="fade-up text-sm text-zinc-500" aria-live="polite">
+              Carregando projetos...
+            </p>
+          </div>
+
+          <div
+            id="projects-grid"
+            class="mt-14 grid gap-6 md:grid-cols-2 xl:grid-cols-3"
+            aria-live="polite"
+            aria-busy="true"
+          ></div>
+        </div>
+      </section>
+
+      <section id="contato" class="px-6 py-24 lg:px-8" aria-labelledby="contato-title">
+        <div class="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+          <div class="fade-up">
+            <p class="text-sm font-semibold uppercase tracking-[0.24em] text-emerald-300">
+              Contato
+            </p>
+            <h2
+              id="contato-title"
+              class="mt-5 text-3xl font-bold tracking-tight text-white sm:text-4xl"
+            >
+              Vamos construir algo memorável.
+            </h2>
+            <p class="mt-6 max-w-xl text-lg leading-8 text-zinc-400">
+              [Escreva aqui um convite simples. Exemplo: Se você procura alguém para criar uma
+              interface elegante, acessível e pronta para produção, podemos conversar.]
+            </p>
+
+            <div class="mt-10 space-y-4 text-sm text-zinc-300">
+              <a
+                href="mailto:[seuemail@exemplo.com]"
+                class="focus-ring flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-5 py-4 transition hover:border-white/20 hover:bg-white/[0.05]"
+                aria-label="Enviar e-mail para [Seu Nome]"
+              >
+                <span class="text-emerald-300">Email</span>
+                <span class="text-zinc-400">[seuemail@exemplo.com]</span>
+              </a>
+
+              <div class="flex flex-wrap gap-3 pt-2">
+                <a
+                  href="https://github.com/seuusuario"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="focus-ring inline-flex items-center justify-center rounded-full border border-white/10 px-5 py-3 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/5"
+                  aria-label="Abrir perfil do GitHub em nova aba"
+                >
+                  GitHub
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/seuusuario"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="focus-ring inline-flex items-center justify-center rounded-full border border-white/10 px-5 py-3 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/5"
+                  aria-label="Abrir perfil do LinkedIn em nova aba"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href="https://x.com/seuusuario"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="focus-ring inline-flex items-center justify-center rounded-full border border-white/10 px-5 py-3 text-sm font-medium text-white transition hover:border-white/20 hover:bg-white/5"
+                  aria-label="Abrir perfil de rede social em nova aba"
+                >
+                  X / Outra Rede
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <form
+            class="fade-up rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 shadow-soft sm:p-8"
+            action="#"
+            method="post"
+            novalidate
+            aria-describedby="contact-helper"
+          >
+            <p id="contact-helper" class="text-sm leading-7 text-zinc-400">
+              Formulário demonstrativo com campos fáceis de integrar ao seu serviço favorito.
+            </p>
+
+            <div class="mt-8 grid gap-6">
+              <div>
+                <label for="nome" class="mb-2 block text-sm font-medium text-zinc-200">Nome</label>
+                <input
+                  id="nome"
+                  name="nome"
+                  type="text"
+                  autocomplete="name"
+                  placeholder="[Seu nome]"
+                  class="focus-ring w-full rounded-2xl border border-white/10 bg-zinc-950/80 px-4 py-3.5 text-base text-white placeholder:text-zinc-500"
+                  aria-required="true"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="mb-2 block text-sm font-medium text-zinc-200"
+                  >Email</label
+                >
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  inputmode="email"
+                  placeholder="[seuemail@exemplo.com]"
+                  class="focus-ring w-full rounded-2xl border border-white/10 bg-zinc-950/80 px-4 py-3.5 text-base text-white placeholder:text-zinc-500"
+                  aria-required="true"
+                />
+              </div>
+
+              <div>
+                <label for="mensagem" class="mb-2 block text-sm font-medium text-zinc-200"
+                  >Mensagem</label
+                >
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  rows="6"
+                  placeholder="[Conte brevemente sobre seu projeto, desafio ou ideia.]"
+                  class="focus-ring w-full rounded-2xl border border-white/10 bg-zinc-950/80 px-4 py-3.5 text-base text-white placeholder:text-zinc-500"
+                  aria-required="true"
+                ></textarea>
+              </div>
+
+              <button
+                type="submit"
+                class="focus-ring inline-flex items-center justify-center rounded-full bg-emerald-400 px-6 py-3.5 text-sm font-semibold text-zinc-950 transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-300"
+              >
+                Enviar mensagem
+              </button>
+            </div>
+          </form>
+        </div>
+      </section>
     </main>
 
-    <script type="module" src="/src/main.ts"></script>
+    <footer class="border-t border-white/10 px-6 py-8 lg:px-8">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between"
+      >
+        <p>&copy; <span id="current-year"></span> [Seu Nome]. Todos os direitos reservados.</p>
+        <p>Portfólio one-page em HTML, Tailwind CSS e JavaScript puro.</p>
+      </div>
+    </footer>
+
+    <script>
+      const GITHUB_USERNAME = "seuusername";
+
+      const fallbackProjects = [
+        {
+          name: "[Projeto Placeholder 01]",
+          description:
+            "[Descrição curta do projeto. Exemplo: Plataforma com foco em UX refinada, arquitetura limpa e excelente performance.]",
+          html_url: "https://github.com/seuusuario/projeto-01",
+          homepage: "",
+          language: "JavaScript",
+          topics: ["Tailwind", "Acessibilidade", "API"],
+          updated_at: "2026-01-15T00:00:00Z",
+        },
+        {
+          name: "[Projeto Placeholder 02]",
+          description:
+            "[Descrição curta do projeto. Exemplo: Dashboard minimalista com atenção especial a hierarquia visual e micro-interações.]",
+          html_url: "https://github.com/seuusuario/projeto-02",
+          homepage: "https://seuprojeto.com",
+          language: "TypeScript",
+          topics: ["Design System", "UX", "Frontend"],
+          updated_at: "2026-02-10T00:00:00Z",
+        },
+        {
+          name: "[Projeto Placeholder 03]",
+          description:
+            "[Descrição curta do projeto. Exemplo: Landing page premium, acessível e totalmente responsiva para produto digital.]",
+          html_url: "https://github.com/seuusuario/projeto-03",
+          homepage: "",
+          language: "HTML",
+          topics: ["HTML5", "SEO", "Performance"],
+          updated_at: "2026-03-08T00:00:00Z",
+        },
+      ];
+
+      const projectGradients = [
+        "from-emerald-400/20 via-emerald-300/5 to-transparent",
+        "from-cyan-400/20 via-sky-300/5 to-transparent",
+        "from-fuchsia-400/15 via-violet-300/5 to-transparent",
+        "from-amber-300/20 via-orange-300/5 to-transparent",
+        "from-white/15 via-zinc-300/5 to-transparent",
+        "from-teal-400/20 via-emerald-200/5 to-transparent",
+      ];
+
+      const projectsGrid = document.getElementById("projects-grid");
+      const projectStatus = document.getElementById("project-status");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const mobileMenuButton = document.getElementById("mobile-menu-button");
+
+      function normalizeProject(repo) {
+        return {
+          name: repo.name || "[Nome do Projeto]",
+          description:
+            repo.description ||
+            "[Adicione aqui uma descrição curta e clara sobre o objetivo, stack e impacto do projeto.]",
+          html_url: repo.html_url || "#",
+          homepage: repo.homepage || "",
+          language: repo.language || "Código",
+          topics: Array.isArray(repo.topics) ? repo.topics.slice(0, 3) : [],
+          updated_at: repo.updated_at || new Date().toISOString(),
+        };
+      }
+
+      function formatDate(dateString) {
+        const formatter = new Intl.DateTimeFormat("pt-BR", {
+          month: "short",
+          year: "numeric",
+        });
+
+        return formatter.format(new Date(dateString));
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function buildProjectCard(project, index) {
+        const gradient = projectGradients[index % projectGradients.length];
+        const tags = [project.language, ...project.topics].filter(Boolean).slice(0, 4);
+        const liveButton = project.homepage
+          ? `
+            <a
+              href="${escapeHtml(project.homepage)}"
+              target="_blank"
+              rel="noreferrer"
+              class="focus-ring inline-flex items-center justify-center rounded-full bg-emerald-400 px-4 py-2.5 text-sm font-semibold text-zinc-950 transition duration-300 hover:-translate-y-0.5 hover:bg-emerald-300"
+              aria-label="Abrir projeto ${escapeHtml(project.name)} em nova aba"
+            >
+              Ver projeto
+            </a>
+          `
+          : `
+            <span
+              class="inline-flex items-center justify-center rounded-full border border-white/10 px-4 py-2.5 text-sm font-medium text-zinc-500"
+              aria-label="Projeto sem link ao vivo"
+            >
+              Sem versão online
+            </span>
+          `;
+
+        return `
+          <article class="fade-up group overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] shadow-soft transition duration-300 hover:-translate-y-1 hover:border-white/20">
+            <div class="relative h-52 overflow-hidden border-b border-white/10 bg-zinc-900" aria-hidden="true">
+              <div class="absolute inset-0 bg-gradient-to-br ${gradient}"></div>
+              <div class="absolute inset-x-6 top-6 flex items-center justify-between text-xs uppercase tracking-[0.24em] text-zinc-300">
+                <span>Projeto</span>
+                <span>${escapeHtml(formatDate(project.updated_at))}</span>
+              </div>
+              <div class="absolute bottom-6 left-6 right-6">
+                <div class="inline-flex rounded-full border border-white/10 bg-black/30 px-4 py-2 text-sm font-medium text-white backdrop-blur">
+                  ${escapeHtml(project.name)}
+                </div>
+              </div>
+            </div>
+
+            <div class="p-6">
+              <h3 class="text-xl font-semibold text-white">${escapeHtml(project.name)}</h3>
+              <p class="mt-4 text-sm leading-7 text-zinc-400">${escapeHtml(project.description)}</p>
+
+              <ul class="mt-6 flex flex-wrap gap-2" aria-label="Tecnologias do projeto ${escapeHtml(project.name)}">
+                ${tags
+                  .map(
+                    (tag) => `
+                    <li class="rounded-full border border-emerald-400/15 bg-emerald-400/10 px-3 py-1.5 text-xs font-medium text-emerald-300">
+                      ${escapeHtml(tag)}
+                    </li>
+                  `,
+                  )
+                  .join("")}
+              </ul>
+
+              <div class="mt-8 flex flex-wrap gap-3">
+                <a
+                  href="${escapeHtml(project.html_url)}"
+                  target="_blank"
+                  rel="noreferrer"
+                  class="focus-ring inline-flex items-center justify-center rounded-full border border-white/10 px-4 py-2.5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/5"
+                  aria-label="Abrir repositório do projeto ${escapeHtml(project.name)} no GitHub"
+                >
+                  Ver no GitHub
+                </a>
+                ${liveButton}
+              </div>
+            </div>
+          </article>
+        `;
+      }
+
+      function renderProjects(projects, statusMessage) {
+        projectsGrid.innerHTML = projects
+          .map((project, index) => buildProjectCard(project, index))
+          .join("");
+        projectsGrid.setAttribute("aria-busy", "false");
+        projectStatus.textContent = statusMessage;
+        observeFadeElements();
+      }
+
+      async function loadProjects() {
+        const endpoint = `https://api.github.com/users/${GITHUB_USERNAME}/repos?sort=updated&per_page=6`;
+
+        if (!GITHUB_USERNAME || GITHUB_USERNAME === "seuusername") {
+          renderProjects(
+            fallbackProjects.map(normalizeProject),
+            "Exibindo projetos placeholder. Atualize a constante GITHUB_USERNAME para carregar seus repositórios.",
+          );
+          return;
+        }
+
+        try {
+          const response = await fetch(endpoint, {
+            headers: {
+              Accept: "application/vnd.github+json",
+            },
+          });
+
+          if (!response.ok) {
+            throw new Error(`GitHub API respondeu com status ${response.status}`);
+          }
+
+          const repositories = await response.json();
+          const filteredRepositories = repositories
+            .filter((repo) => !repo.fork)
+            .slice(0, 6)
+            .map(normalizeProject);
+
+          if (filteredRepositories.length === 0) {
+            throw new Error("Nenhum repositório público encontrado.");
+          }
+
+          renderProjects(
+            filteredRepositories,
+            "Projetos carregados diretamente da API pública do GitHub.",
+          );
+        } catch (error) {
+          console.error("Falha ao carregar projetos do GitHub:", error);
+          renderProjects(
+            fallbackProjects.map(normalizeProject),
+            "API indisponível no momento. Exibindo projetos placeholder para preservar a experiência.",
+          );
+        }
+      }
+
+      function observeFadeElements() {
+        const elements = document.querySelectorAll(".fade-up");
+        const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+        if (prefersReducedMotion) {
+          elements.forEach((element) => element.classList.add("is-visible"));
+          return;
+        }
+
+        const observer = new IntersectionObserver(
+          (entries, currentObserver) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                currentObserver.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.16,
+            rootMargin: "0px 0px -40px 0px",
+          },
+        );
+
+        elements.forEach((element) => {
+          if (!element.classList.contains("is-visible")) {
+            observer.observe(element);
+          }
+        });
+      }
+
+      function toggleMobileMenu(forceState) {
+        const willOpen =
+          typeof forceState === "boolean" ? forceState : mobileMenu.classList.contains("hidden");
+
+        mobileMenu.classList.toggle("hidden", !willOpen);
+        mobileMenuButton.setAttribute("aria-expanded", String(willOpen));
+        mobileMenuButton.setAttribute(
+          "aria-label",
+          willOpen ? "Fechar menu de navegação" : "Abrir menu de navegação",
+        );
+      }
+
+      mobileMenuButton.addEventListener("click", () => {
+        toggleMobileMenu();
+      });
+
+      mobileMenu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => toggleMobileMenu(false));
+      });
+
+      window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768) {
+          toggleMobileMenu(false);
+        }
+      });
+
+      document.getElementById("current-year").textContent = new Date().getFullYear();
+
+      observeFadeElements();
+      loadProjects();
+    </script>
+
+    <script src="./src/main.ts"></script>
   </body>
 </html>
