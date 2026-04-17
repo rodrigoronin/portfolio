@@ -58,6 +58,14 @@
   line-height: 1.5;
 }
 
+.animated {
+  display: inline-block;
+  width: 10rem;
+  font-size: 1.5rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
 .footer {
   position: static;
   padding: 0.75rem 0;
