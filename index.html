@@ -665,6 +665,9 @@
       function buildProjectCard(project, index) {
         const gradient = projectGradients[index % projectGradients.length];
         const tags = [project.language, ...project.topics].filter(Boolean).slice(0, 4);
+
+        if (project.name === "rodrigoronin") return;
+
         const projectNameEdited = project.name
           .split("-")
           .map((str) => str[0].toUpperCase() + str.slice(1))
